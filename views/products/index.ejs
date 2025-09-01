@@ -1,0 +1,50 @@
+<main class="p-4 sm:p-6 bg-white min-h-screen mt-24">
+  <% if (products.length===0) { %>
+    <p class="text-center text-gray-600 text-xl">No products available.</p>
+    <% } else { %>
+      <!-- Masonry-like Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
+        <% products.forEach(product=> { %>
+          <div onclick="window.location.href='/products/show/<%= product._id %>'"
+            class="group cursor-pointer flex flex-col">
+            <!-- Product Image -->
+            <div class="relative overflow-hidden rounded-lg w-full">
+              <img src="<%= product.image %>" alt="<%= product.brand %>"
+                class="w-full h-64 sm:h-72 md:h-80 lg:h-64 object-cover transform group-hover:scale-110 transition duration-500">
+              <!-- Discount Tag -->
+              <span
+                class="absolute top-3 left-3 bg-black bg-opacity-70 text-white text-xs font-bold px-3 py-1 rounded-full">
+                <%= product.discount %>% OFF
+              </span>
+            </div>
+
+            <!-- Product Details -->
+            <div class="mt-3 text-center flex-1 flex flex-col justify-between">
+              <div>
+                <h2 class="text-md sm:text-lg font-semibold text-gray-800 group-hover:text-indigo-600 transition">
+                  <%= product.brand %> - <%= product.type %>
+                </h2>
+                <p class="text-gray-500 text-xs sm:text-sm mt-1">
+                  Color: <%= product.color %> | <%= product.gender %>
+                </p>
+                <p class="text-lg sm:text-xl font-bold text-gray-900 mt-2">₹<%= product.price %>
+                </p>
+              </div>
+
+              <!-- Action Links -->
+              <div class="flex justify-center gap-2 sm:gap-4 mt-3">
+                <a href="/cart/add/<%= product._id %>" onclick="event.stopPropagation();"
+                  class="flex-1 px-3 sm:px-4 py-2 bg-black text-white text-xs sm:text-sm rounded hover:bg-gray-800 transition text-center">
+                  Add to Cart
+                </a>
+                <a href="/cart/buy/<%= product._id %>" onclick="event.stopPropagation();"
+                  class="flex-1 px-3 sm:px-4 py-2 bg-indigo-600 text-white text-xs sm:text-sm rounded hover:bg-indigo-700 transition text-center">
+                  Buy Now
+                </a>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+      <% } %>
+</main>

@@ -1,0 +1,84 @@
+<% layout('layout') %>
+
+<div class="flex justify-center items-center min-h-screen bg-gradient-to-r from-pink-100 via-red-100 to-yellow-100">
+  <div class="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md">
+
+    <!-- Heading -->
+    <div class="text-center mb-6">
+      <h1 class="text-3xl font-bold text-gray-800">Welcome Back!</h1>
+      <p class="text-gray-500 mt-2">Login to continue your journey</p>
+    </div>
+
+    <!-- Login Form -->
+    <form action="/login" method="POST" class="space-y-5">
+
+      <!-- Email / Mobile -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Email or Mobile</label>
+        <input type="text"
+               name="identifier"
+               placeholder="Enter email or mobile number"
+               class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-400 transition duration-200"
+               required>
+      </div>
+
+      <!-- Password with eye icon -->
+      <div class="relative">
+        <label class="block text-gray-700 font-medium mb-1">Password</label>
+        <input type="password"
+               id="password"
+               name="password"
+               placeholder="Enter your password"
+               class="w-full text-black px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-400 transition duration-200 pr-12"
+               required>
+        <!-- Eye icon inside input -->
+        <span id="togglePassword" class="absolute right-4 mt-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500 hover:text-gray-800">
+          <i class="bi bi-eye"></i>
+        </span>
+      </div>
+
+      <!-- Forgot password link -->
+      <div class="text-right">
+        <a href="/forgot-password" class="text-sm text-red-500 hover:underline">Forgot password?</a>
+      </div>
+
+      <!-- Login Button -->
+      <button type="submit"
+              class="w-full py-3 bg-red-500 text-white rounded-xl font-semibold hover:bg-red-600 shadow-md transition duration-300">
+        Login
+      </button>
+    </form>
+
+    <!-- Divider -->
+    <div class="flex items-center my-6">
+      <div class="flex-grow h-px bg-gray-300"></div>
+      <span class="px-4 text-gray-500 text-sm">or</span>
+      <div class="flex-grow h-px bg-gray-300"></div>
+    </div>
+
+    <!-- Social Login -->
+    <div class="flex flex-col gap-3">
+      <button class="w-full text-black flex items-center justify-center gap-2 py-2 border border-gray-300 rounded-xl hover:bg-gray-50 transition    ">
+        <i class="bi bi-google text-red-500"></i> Continue with Google
+      </button>
+    </div>
+
+    <!-- Signup -->
+    <p class="text-center mt-6 text-sm text-gray-600">
+      Don’t have an account? 
+      <a href="/signup" class="text-red-500 font-semibold hover:underline">Sign Up</a>
+    </p>
+  </div>
+</div>
+
+<!-- Password toggle script -->
+<script>
+  const togglePassword = document.getElementById("togglePassword");
+  const password = document.getElementById("password");
+
+  togglePassword.addEventListener("click", () => {
+    const type = password.getAttribute("type") === "password" ? "text" : "password";
+    password.setAttribute("type", type);
+    togglePassword.innerHTML = type === "password" ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+  });
+</script>

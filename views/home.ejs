@@ -1,0 +1,51 @@
+<main class="h-screen flex flex-col items-center justify-center 
+             bg-gradient-to-r from-orange-500 via-pink-500 to-purple-700 
+             text-white relative overflow-hidden">
+
+  <!-- Background Animated Blobs -->
+  <div class="absolute -top-20 -left-20 w-72 h-72 bg-orange-400 rounded-full 
+              mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
+  <div class="absolute -bottom-24 -right-20 w-80 h-80 bg-pink-400 rounded-full 
+              mix-blend-multiply filter blur-3xl opacity-30 animate-ping"></div>
+  <div class="absolute top-1/3 -right-40 w-96 h-96 bg-purple-500 rounded-full 
+              mix-blend-multiply filter blur-3xl opacity-25 animate-bounce"></div>
+
+  <!-- Hero Content -->
+  <h1 class="text-6xl md:text-7xl font-extrabold mb-6 animate-fadeInUp drop-shadow-xl">
+    <%= title %>
+  </h1>
+  
+  <p class="text-lg md:text-2xl mb-8 text-orange-100 font-light animate-fadeIn delay-200">
+    Welcome to our <span class="font-semibold text-yellow-200">Clothing Store</span> ✨ <br>
+    Explore the <span class=" decoration-yellow-300">latest trends</span> with style!
+  </p>
+  
+  <!-- Call To Action Button -->
+  <a href="/products" 
+     class="bg-yellow-300 text-purple-800 px-10 py-4 rounded-full font-extrabold text-lg shadow-xl 
+            hover:scale-110 hover:bg-yellow-400 transition-all duration-300 animate-bounce">
+    🛍️ Shop Now
+  </a>
+</main>
+
+<!-- Extra Animations -->
+<style>
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 1s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 2s ease-in-out forwards;
+  }
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+</style>

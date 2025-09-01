@@ -1,0 +1,64 @@
+<% layout('layout') %>
+
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
+    <!-- Title -->
+    <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-6">Create Account</h2>
+    <p class="text-center text-gray-500 mb-6">Join us and start shopping today!</p>
+
+    <!-- Signup Form -->
+    <form action="/signup" method="POST" class="space-y-4">
+      <!-- Username -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Username</label>
+        <input type="text" name="username" placeholder="Enter your username"
+          class= " text-black w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none"
+          required>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Email</label>
+        <input type="email" name="email" placeholder="Enter your email"
+          class=" text-black w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none"
+          required>
+      </div>
+
+      <!-- Mobile -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Mobile</label>
+        <input type="tel" name="mobile" placeholder="Enter your mobile number"
+          class="text-black w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none"
+          required>
+      </div>
+
+      <!-- Age -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Age</label>
+        <input type="number" name="age" min="13" placeholder="Enter your age"
+          class="text-black w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none"
+          required>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Password</label>
+        <input type="password" name="password" placeholder="Enter your password"
+          class="text-black w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none"
+          required>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit"
+        class="w-full bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600 transition duration-200">
+        Sign Up
+      </button>
+    </form>
+
+    <!-- Already have account -->
+    <p class="text-center mt-6 text-gray-600 text-sm">
+      Already have an account?
+      <a href="/login" class="text-red-500 font-semibold hover:underline">Login</a>
+    </p>
+  </div>
+</div>

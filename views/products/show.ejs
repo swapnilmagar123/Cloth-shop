@@ -1,0 +1,53 @@
+<main class="p-6 max-w-4xl mx-auto mt-24 bg-white shadow-lg rounded-xl">
+    <div class="flex flex-col md:flex-row gap-6">
+
+        <!-- Product Image -->
+        <div class="md:w-1/2">
+            <img src="<%= product.image %>" alt="<%= product.brand %>" class="w-full rounded-lg shadow-md">
+        </div>
+
+        <!-- Product Details -->
+        <div class="md:w-1/2 flex flex-col justify-between">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">
+                    <%= product.brand %> - <%= product.type %>
+                </h1>
+                <p class="text-gray-600 mt-2">Color: <%= product.color %>
+                </p>
+                <p class="text-gray-600 mt-1">Gender: <%= product.gender %>
+                </p>
+                <p class="text-gray-600 mt-1">Sizes: <%= product.sizes.join(", ") %></p>
+        <p class=" text-xl font-bold text-gray-900 mt-4">₹<%= product.price %>
+                </p>
+                <% if (product.discount> 0) { %>
+                    <p class="text-green-600 font-semibold mt-1">Discount: <%= product.discount %>% OFF</p>
+                    <% } %>
+            </div>
+
+            <!-- Actions -->
+            <!-- Actions -->
+            <div class="flex gap-4 mt-6">
+                <% if (user) { %>
+                    <a href="/products/edit/<%= product._id %>"
+                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                        ✏️ Edit
+                    </a>
+                    <form action="/products/delete/<%= product._id %>" method="POST"
+                        onsubmit="return confirm('Are you sure?');">
+                        <button type="submit"
+                            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition">
+                            🗑️ Delete
+                        </button>
+                    </form>
+                    <% } %>
+
+                        <!-- Buy Now button (always visible) -->
+                        <a href="<%= user ? '/cart/buy/' + product._id : '/login' %>"
+                            class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">
+                            🛒 Buy Now
+                        </a>
+            </div>
+
+        </div>
+    </div>
+</main>

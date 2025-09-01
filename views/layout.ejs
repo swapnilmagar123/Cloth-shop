@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= typeof title !=="undefined" ? title : "Cloth Shop" %>
+  </title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="relative bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 text-white">
+
+  <!-- Background Animated Blobs (Global, fixed behind content) -->
+  <div class="fixed -top-20 -left-20 w-72 h-72 bg-orange-400 rounded-full 
+              mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
+  <div class="fixed -bottom-24 -right-20 w-80 h-80 bg-pink-400 rounded-full 
+              mix-blend-multiply filter blur-3xl opacity-30 animate-ping"></div>
+  <div class="fixed top-1/3 -right-40 w-96 h-96 bg-purple-500 rounded-full 
+              mix-blend-multiply filter blur-3xl opacity-25 animate-bounce"></div>
+  <!-- Navbar -->
+  <%- include("partials/navbar") %>
+
+    <!-- Flash Messages -->
+   <!-- Toast Container -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+  
+  <% if (success_msg && success_msg.length > 0) { %>
+    <% success_msg.forEach(function(msg) { %>
+      <div class="toast align-items-center text-bg-success border-0 shadow-lg mb-3" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            ✅ <%= msg %>
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+
+  <% if (error_msg && error_msg.length > 0) { %>
+    <% error_msg.forEach(function(msg) { %>
+      <div class="toast align-items-center text-bg-danger border-0 shadow-lg mb-3" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            ⚠️ <%= msg %>
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+
+</div>
+
+<!-- Script to auto-show toasts -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+    var toastList = toastElList.map(function (toastEl) {
+      return new bootstrap.Toast(toastEl, { delay: 4000 }); // auto hide after 4s
+    });
+    toastList.forEach(toast => toast.show());
+  });
+</script>
+
+
+    <!-- Main Content -->
+    <main class="container py-4">
+      <%- body %>
+    </main>
+
+    <!-- Footer -->
+      <%- include('partials/footer') %>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

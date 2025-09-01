@@ -1,0 +1,57 @@
+<main class="p-6  min-h-screen text-white mt-20">
+  <h1 class="text-3xl font-bold mb-6 text-center">🛒 Your Cart</h1>
+
+  <!-- Button to go to products page -->
+  <div class="flex justify-center mb-6">
+    <a href="/products"
+      class="bg-gradient-to-r from-blue-50 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 
+             text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition transform hover:scale-105">
+       All Products
+    </a>
+  </div>
+
+  <% if (!cart || cart.length === 0) { %>
+    <p class="text-center text-gray-400">Your cart is empty.</p>
+  <% } else { %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <% cart.forEach(product => { %>
+        <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden relative">
+          <img src="<%= product.image %>" class="w-full h-64 object-cover" />
+
+          <div class="p-4">
+            <h2 class="text-lg font-semibold mb-1 text-white">
+              <%= product.brand %> - <%= product.type %>
+            </h2>
+            <p class="text-gray-300 mb-1">₹<%= product.price %></p>
+            <p class="text-gray-400 mb-1">Color: <%= product.color %></p>
+            <% if (product.qty) { %>
+              <p class="text-gray-400 mb-1">Qty: <%= product.qty %></p>
+            <% } %>
+
+            <!-- Buttons -->
+            <div class="grid grid-cols-2 gap-2 mt-3">
+              <!-- Remove -->
+              <form action="/cart/remove/<%= product._id %>" method="POST">
+                <button
+                  type="submit"
+                  class="w-full bg-black hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition">
+                  ❌ Remove
+                </button>
+              </form>
+
+              <!-- Buy Now -->
+              <form action="/cart/buy/<%= product._id %>" method="POST">
+                <button
+                  type="submit"
+                  class="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 
+                         text-white font-semibold py-2 px-4 rounded-lg shadow-md transition">
+                  🛍️ Buy Now
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</main>
